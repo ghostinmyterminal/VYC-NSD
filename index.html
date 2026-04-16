@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>पथ नाट्य कार्यशाला | Path Natya Karyashala | Bastar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,700;9..144,1,300&family=Teko:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.9.1/tsparticles.confetti.bundle.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fire:    '#E05212',
+            ember:   '#A83408',
+            ochre:   '#CC8414',
+            gold:    '#B87010',
+            forest:  '#263C14',
+            fdeep:   '#182808',
+            night:   '#100806',
+            nmid:    '#1C0E06',
+            nlight:  '#2C1A0C',
+            parchment:'#EED8A8',
+            cream:   '#FAF0D4',
+            ash:     '#88706A',
+            moss:    '#3C5820',
+            clay:    '#8C3C18',
+          },
+          fontFamily: {
+            display:  ['"Yatra One"', 'serif'],
+            display2: ['Fraunces', 'serif'],
+            heading:  ['Teko', 'sans-serif'],
+            body:     ['"Noto Serif"', 'serif'],
+            ui:       ['"Noto Sans"', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* Gond dot texture */
+    .tex-dots {
+      background-image: radial-gradient(circle, rgba(204,132,20,0.13) 1.5px, transparent 1.5px);
+      background-size: 18px 18px;
+    }
+    .tex-dots-green {
+      background-image: radial-gradient(circle, rgba(60,88,32,0.25) 1.5px, transparent 1.5px);
+      background-size: 16px 16px;
+    }
+
+    /* Decorative gradient line */
+    .deco-line {
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #CC8414 30%, #E05212 50%, #CC8414 70%, transparent);
+    }
+
+    /* Hindi display font helper */
+    .hindi { font-family: 'Yatra One', serif; line-height: 1.05; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    /* Card hover */
+    .workshop-card {
+      border-radius: 0.375rem;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .workshop-card:hover {
+      border-color: rgba(204,132,20,0.55);
+      box-shadow: 0 0 28px rgba(224,82,18,0.14);
+      transform: translateY(-5px);
+    }
+    .org-card {
+      border-radius: 0.375rem;
+      transition: border-color 0.3s, transform 0.35s;
+    }
+    .org-card:hover {
+      border-color: rgba(224,82,18,0.4);
+      transform: translateY(-6px);
+    }
+
+    /* Pulse glow on CTA */
+    @keyframes pulseGlow {
+      0%,100% { box-shadow: 0 0 16px rgba(224,82,18,0.45); }
+      50%      { box-shadow: 0 0 36px rgba(224,82,18,0.85), 0 0 60px rgba(204,132,20,0.25); }
+    }
+    .pulse-glow { animation: pulseGlow 2.2s ease-in-out infinite; }
+
+    /* Input focus ring */
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: rgba(224,82,18,0.55) !important;
+      box-shadow: 0 0 0 3px rgba(224,82,18,0.08);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #100806; }
+    ::-webkit-scrollbar-thumb { background: #E05212; border-radius: 3px; }
+
+    /* Hero pill hover */
+    .hero-pill { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .hero-pill:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.35); }
+
+    /* ── Brush stroke mask ── */
+    .mask1 {
+      -webkit-mask-image: url(brush_stroke.png);
+      mask-image: url(brush_stroke.png);
+      -webkit-mask-size: cover;
+      mask-size: cover;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+    }
+
+    /* ── Mobile hero (warm/light mode) ── */
+    @keyframes slowRotateMobile {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @media (max-width: 639px) {
+      #hero-section { background: #C4A050 !important; min-height: unset !important; }
+
+  #heroMandala {
+    display: block !important;
+
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 70vw !important;
+
+    opacity: 0.9 !important;
+
+    transform: translate(-50%, -30%) !important; /* 👈 push outside nicely */
+
+    animation: slowRotateMobile 70s linear infinite !important;
+  }
+
+      #heroTitle   { color: #1A0804 !important; }
+      #heroSubtitle { color: rgba(26,8,4,0.5) !important; }
+
+      /* image: remove rounded corners, apply brush stroke mask */
+      #heroImg {
+        height: 350px !important;
+        border-radius: 0 !important;
+
+        mask-image: url(brush_stroke.png);
+        
+
+        mask-size: 100% 100%;  /* stretch to fit exactly */
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+      }
+
+      /* hide desktop-only elements */
+      #heroInfoStrip { display: none !important; }
+      #heroFade      { display: none !important; }
+      #heroSparkles  { display: none !important; }
+    }
+  </style>
+</head>
+
+<body style="background-color:#100806;" class="text-parchment overflow-x-hidden">
+
+
+<!-- ══════════════════════════════════ HERO ══════════════════════════════════ -->
+<section id="hero-section" class="relative overflow-hidden md:rounded-none rounded-b-[24px]" style="background:#0E0A06;min-height:80svh;">
+
+  <!-- ═══ Hero Mandala (behind image, 50% extruding left) ═══ -->
+  <style>
+    @keyframes slowRotate {
+      from { transform: translateY(-50%) rotate(0deg); }
+      to { transform: translateY(-50%) rotate(360deg); }
+    }
+  </style>
+  <img src="golden_hero_mandla.svg" alt="" aria-hidden="true"
+       id="heroMandala"
+       class="absolute pointer-events-none"
+       style="width:80vw;max-width:900px;
+              left:-35%;top:50%;
+              opacity:0.45;z-index:1;
+              animation: slowRotate 50s linear infinite;" />
+
+  <!-- ── Scattered dot accents (top-right, like reference) ── -->
+  <div class="absolute top-14 right-14 w-3 h-3 rounded-full pointer-events-none"
+       style="background:#E05212;" aria-hidden="true"></div>
+  <div class="absolute top-24 right-28 w-2 h-2 rounded-full pointer-events-none"
+       style="background:#CC8414;opacity:0.6;" aria-hidden="true"></div>
+
+  <!-- ══ TOP ROW: mark | brand | icon-buttons ══ -->
+  <div class="relative z-10 flex items-end justify-end
+              px-7 sm:px-10 lg:px-16 pt-5 sm:pt-12">
+
+    <!-- LEFT: theatre masks icon mark with floating dots -->
+
+
+    <!-- CENTER: brand name + subtitle (matching Fanisi layout exactly) -->
+    <div class="text-center flex-1 min-w-0 ps-8">
+      <!-- Main display — Yatra One for Hindi (= tribal decorative like Fanisi title font) -->
+      <h1 id="heroTitle" class="hindi text-parchment leading-none mb-1"
+          style="font-size:clamp(2.8rem,8vw,5.6rem);">
+        पथ नाट्य
+      </h1>
+      <p id="heroSubtitle" class="text-parchment/45 tracking-[0.22em]"
+         style="font-family:'Fraunces',serif;font-weight:300;font-style:italic;
+                font-size:clamp(0.75rem,1.6vw,1.1rem);">
+        Street Theatre Workshop
+      </p>
+    </div>
+
+    <!-- RIGHT: two circular icon buttons (matching reference top-right) -->
+    <div class="flex-shrink-0 flex flex-col items-center gap-2">
+      <!-- Register (person icon, fire-colored) -->
+      <a href="#register"
+         class="flex items-center justify-center rounded-full hover:opacity-85 transition-opacity"
+         style="width:44px;height:44px;background:#E05212;box-shadow:0 4px 18px rgba(224,82,18,0.45);"
+         aria-label="Register">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="9" cy="5.5" r="3.2" fill="white"/>
+          <path d="M1.5 16C1.5 12.41 4.91 9.5 9 9.5C13.09 9.5 16.5 12.41 16.5 16"
+                stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        </svg>
+      </a>
+      <!-- Menu (dark warm) -->
+      <button id="heroMenuBtn"
+              class="flex items-center justify-center rounded-full hover:opacity-85 transition-opacity"
+              style="width:44px;height:44px;background:#2A1A0C;"
+              aria-label="Menu">
+        <svg width="17" height="13" viewBox="0 0 17 13" fill="none">
+          <line x1="0" y1="1"   x2="17" y2="1"   stroke="#EED8A8" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="0" y1="6.5" x2="17" y2="6.5" stroke="#EED8A8" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="0" y1="12"  x2="17" y2="12"  stroke="#EED8A8" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav drawer (toggled by hero menu button) -->
+  <div id="heroMobileNav" class="hidden absolute z-20 rounded-lg border border-ochre/20 px-4 py-3 space-y-2"
+       style="top:160px;right:80px;
+              background:linear-gradient(135deg, rgba(42,26,12,0.98), rgba(20,12,6,0.95));
+              box-shadow:0 8px 32px rgba(0,0,0,0.5);min-width:180px;">
+    <a href="#about"    class="block font-ui text-xs tracking-widest uppercase text-parchment/70 hover:text-ochre transition-colors py-1">About</a>
+    <a href="#bastar"   class="block font-ui text-xs tracking-widest uppercase text-parchment/70 hover:text-ochre transition-colors py-1">Bastar</a>
+    <a href="#workshop" class="block font-ui text-xs tracking-widest uppercase text-parchment/70 hover:text-ochre transition-colors py-1">Workshop</a>
+    <div class="border-t border-ochre/15 my-1"></div>
+    <a href="#register" class="block font-ui text-xs tracking-widest uppercase text-fire py-1">Register Now →</a>
+  </div>
+
+  <!-- ── Description paragraph (centered, below brand, above image) ── -->
+
+
+  <!-- ══ IMAGE CARD + FLOATING PILLS ══ -->
+  <div class="relative z-10 mx-auto mt-7 px-7 sm:px-14 lg:px-20" style="max-width:940px;">
+
+    <!-- Floating pill LEFT — "Explore Retreats" equivalent → Register Now -->
+    <a href="#register"
+       class="hero-pill absolute z-20 hidden sm:flex items-center gap-2.5 rounded-full font-ui font-medium"
+       style="left:-2px;top:50%;transform:translateY(-50%);
+              background:#EED8A8;color:#1A0E06;
+              padding:11px 20px;font-size:0.82rem;
+              box-shadow:0 8px 30px rgba(0,0,0,0.5);">
+      <!-- person / theatre icon -->
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <circle cx="7.5" cy="4.5" r="2.6" fill="#E05212"/>
+        <path d="M1 13C1 10.239 3.91 8 7.5 8C11.09 8 14 10.239 14 13"
+              stroke="#E05212" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      </svg>
+      Register Now
+    </a>
+
+    <!-- Main image -->
+    <img
+      id="heroImg"
+      src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Bison_Horn_Maria_Tribal_Dance_Bastar.jpg"
+      alt="Bison Horn Maria tribal dancers, Bastar — a living street performance tradition"
+      class="w-full block"
+      style="height:clamp(250px,42vw,500px);
+             object-fit:cover;
+             object-position:center 28%;
+             border-radius:1.5rem;"
+    />
+
+    <!-- Sparkles ornament — top-right corner -->
+    <div id="heroSparkles" class="absolute top-3.5 right-3.5 z-10 pointer-events-none" aria-hidden="true">
+      <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5Z" fill="#E05212" opacity="0.85"/>
+        <path d="M18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5Z" fill="#CC8414" opacity="0.7"/>
+        <path d="M16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" fill="#EED8A8" opacity="0.55"/>
+      </svg>
+    </div>
+
+    <!-- Floating pill BOTTOM-RIGHT — hidden on mobile -->
+    <a href="#about"
+       class="hero-pill absolute z-20 hidden sm:flex items-center gap-2.5 rounded-full font-ui font-medium"
+       style="right:-2px;bottom:20px;
+              background:#EED8A8;color:#1A0E06;
+              padding:11px 20px;font-size:0.82rem;
+              box-shadow:0 8px 30px rgba(0,0,0,0.5);">
+      <!-- envelope icon -->
+      <svg width="15" height="13" viewBox="0 0 15 13" fill="none">
+        <rect x="0.5" y="1.5" width="14" height="10" rx="2" stroke="#CC8414" stroke-width="1.3" fill="none"/>
+        <path d="M0.5 4.5L7.5 8L14.5 4.5" stroke="#CC8414" stroke-width="1.3"/>
+      </svg>
+      Learn More
+    </a>
+  </div>
+
+  <!-- ── Info strip below image (desktop only) ── -->
+  <div id="heroInfoStrip" class="relative z-10 flex flex-wrap items-center justify-between gap-4
+              mx-auto mt-6 px-7 sm:px-14 lg:px-20 pb-14"
+       style="max-width:940px;">
+    <div class="flex items-center gap-5">
+      <div>
+        <div class="font-heading text-fire leading-none" style="font-size:1.8rem;">20 APR</div>
+        <div class="font-ui text-[10px] tracking-widest uppercase mt-0.5 text-parchment/35">Start Date · Jagdalpur</div>
+      </div>
+      <div class="w-px h-7 bg-parchment/10"></div>
+      <div>
+        <div class="font-heading text-fire leading-none" style="font-size:1.8rem;">1–4 PM</div>
+        <div class="font-ui text-[10px] tracking-widest uppercase mt-0.5 text-parchment/35">Daily · Free</div>
+      </div>
+      <div class="w-px h-7 bg-parchment/10 hidden sm:block"></div>
+      <div class="hidden sm:block">
+        <div class="font-heading text-fire leading-none" style="font-size:1.8rem;">OPEN</div>
+        <div class="font-ui text-[10px] tracking-widest uppercase mt-0.5 text-parchment/35">Applications</div>
+      </div>
+    </div>
+    <div class="font-ui text-[10px] tracking-widest uppercase text-parchment/30">
+      BADAL &nbsp;×&nbsp; VYC &nbsp;×&nbsp; NSD
+    </div>
+  </div>
+
+  <!-- ── Mobile-only content (below image) ── -->
+  <div class="sm:hidden relative z-10 px-5 pb-4" style="max-width:440px;margin:0 auto;">
+
+    <!-- Register Now pill -->
+    <div class="flex justify-center mt-5 mb-6">
+      <a href="#register"
+         class="flex items-center gap-2.5 rounded-full font-ui font-medium"
+         style="background:#EED8A8;color:#1A0804;padding:13px 30px;font-size:0.85rem;
+                box-shadow:0 6px 22px rgba(26,8,4,0.14);">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <circle cx="7.5" cy="4.5" r="2.6" fill="#E05212"/>
+          <path d="M1 13C1 10.239 3.91 8 7.5 8C11.09 8 14 10.239 14 13"
+                stroke="#E05212" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        </svg>
+        Register Now
+      </a>
+    </div>
+
+    <!-- 3-col info strip -->
+    <div class="flex items-stretch mb-6">
+      <div class="flex-1 text-center py-3">
+        <div class="font-heading leading-none mb-1" style="font-size:1.55rem;color:#1A0804;">20 APR</div>
+        <div class="font-ui uppercase tracking-widest" style="font-size:0.58rem;color:rgba(26,8,4,0.45);">Start Date · Jagdalpur</div>
+      </div>
+      <div class="w-px self-stretch" style="background:rgba(26,8,4,0.15);"></div>
+      <div class="flex-1 text-center py-3">
+        <div class="font-heading leading-none mb-1" style="font-size:1.55rem;color:#1A0804;">1–4 PM</div>
+        <div class="font-ui uppercase tracking-widest" style="font-size:0.58rem;color:rgba(26,8,4,0.45);">Daily · Free</div>
+      </div>
+      <div class="w-px self-stretch" style="background:rgba(26,8,4,0.15);"></div>
+      <div class="flex-1 text-center py-3">
+        <div class="font-heading leading-none mb-1" style="font-size:1.55rem;color:#1A0804;">OPEN</div>
+        <div class="font-ui uppercase tracking-widest" style="font-size:0.58rem;color:rgba(26,8,4,0.45);">Applications</div>
+      </div>
+    </div>
+
+    <!-- BADAL × VYC × NSD (mobile only, inside hero) -->
+    <div class="text-center font-ui tracking-widest uppercase mt-2 pb-7"
+         style="font-size:0.65rem;color:rgba(26,8,4,0.4);">
+      BADAL &nbsp;×&nbsp; VYC &nbsp;×&nbsp; NSD
+    </div>
+  </div>
+
+  <!-- Fade to next section (desktop only) -->
+  <div id="heroFade" class="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
+       style="background:linear-gradient(to bottom,transparent,#1C0E06);"></div>
+</section>
+
+
+<!-- ── Mobile: Learn More straddling hero/body boundary ── -->
+<div class="sm:hidden relative z-20 flex justify-center"
+     style="margin:-24px auto 0;">
+  <a href="#about"
+     class="flex items-center gap-2.5 rounded-full font-ui font-medium"
+     style="background:#EED8A8;color:#1A0804;padding:13px 30px;font-size:0.85rem;
+            box-shadow:0 6px 22px rgba(26,8,4,0.28);">
+    <svg width="15" height="13" viewBox="0 0 15 13" fill="none">
+      <rect x="0.5" y="1.5" width="14" height="10" rx="2" stroke="#CC8414" stroke-width="1.3" fill="none"/>
+      <path d="M0.5 4.5L7.5 8L14.5 4.5" stroke="#CC8414" stroke-width="1.3"/>
+    </svg>
+    Learn More
+  </a>
+</div>
+
+<!-- ════════════════════════════ ABOUT / INTRO ════════════════════════════ -->
+<section id="about" class="relative py-24 px-6" style="background-color:#1C0E06;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+      <!-- Text col -->
+      <div class="reveal">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-6 h-px bg-fire/60"></div>
+          <span class="font-ui text-[10px] tracking-[0.35em] uppercase text-fire/70">01 — What is Path Natya</span>
+        </div>
+
+        <h2 class="font-heading text-parchment mb-5"
+            style="font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.08;">
+          AN INTERTWINED<br>
+          <span class="text-ochre">CLASS BY</span><br>NSD &amp; BADAL
+        </h2>
+
+        <div class="deco-line max-w-[100px] mb-7"></div>
+
+        <p class="font-body text-parchment/65 leading-relaxed mb-5">
+          <em>पथ नाट्य कार्यशाला</em> is a joint programme by the <strong class="text-parchment/85">National School of Drama</strong>
+          and <strong class="text-parchment/85">BADAL</strong> — a living classroom that weaves together
+          NSD's institutional knowledge with Bastar's living folk traditions.
+        </p>
+        <p class="font-body text-parchment/65 leading-relaxed mb-5">
+          <strong class="text-ochre/80">Why?</strong> To explore the art and culture of Bastar  it's tribal
+          theatre forms, Gond visual traditions, and oral storytelling. Where, theatre becomes the tool and Bastar's heritage becomes the classroom.
+        </p>
+        <p class="font-body italic text-parchment/40 text-sm leading-relaxed border-l-2 border-fire/30 pl-4">
+          "The street is the oldest stage. Every corner holds a story waiting to be told."
+        </p>
+      </div>
+
+      <!-- Mask illustration col -->
+      <div class="reveal reveal-delay-1 flex items-center justify-center">
+        <div class="relative">
+          <!-- Glow halo -->
+          <div class="absolute inset-0 pointer-events-none"
+               style="background:radial-gradient(circle, rgba(224,82,18,0.11) 0%, transparent 65%);
+                      transform:scale(1.6); border-radius:50%;"></div>
+
+          <!-- FA masks-theater — large display icon -->
+          <svg viewBox="0 0 640 512" fill="none" aria-label="Theatre masks illustration"
+               style="width:260px;height:auto;">
+            <!-- ochre glow layer -->
+            <path d="M74.6 373.2c41.7 36.1 108 82.5 166.1 73.7c6.1-.9 12.1-2.5 18-4.5c-9.2-12.3-17.3-24.4-24.2-35.4c-21.9-35-28.8-75.2-25.9-113.6c-20.6 4.1-39.2 13-54.7 25.4c-6.5 5.2-16.3 1.3-14.8-7c6.4-33.5 33-60.9 68.2-66.3c2.6-.4 5.3-.7 7.9-.8l19.4-131.3c2-13.8 8-32.7 25-45.9C278.2 53.2 310.5 37 363.2 32.2c-.8-.7-1.6-1.4-2.4-2.1C340.6 14.5 288.4-11.5 175.7 5.6S20.5 63 5.7 83.9C0 91.9-.8 102 .6 111.8L24.8 276.1c5.5 37.3 21.5 72.6 49.8 97.2zm87.7-219.6c4.4-3.1 10.8-2 11.8 3.3c.1 .5 .2 1.1 .3 1.6c3.2 21.8-11.6 42-33.1 45.3s-41.5-11.8-44.7-33.5c-.1-.5-.1-1.1-.2-1.6c-.6-5.4 5.2-8.4 10.3-6.7c9 3 18.8 3.9 28.7 2.4s19.1-5.3 26.8-10.8zM261.6 390c29.4 46.9 79.5 110.9 137.6 119.7s124.5-37.5 166.1-73.7c28.3-24.5 44.3-59.8 49.8-97.2l24.2-164.3c1.4-9.8 .6-19.9-5.1-27.9c-14.8-20.9-57.3-61.2-170-78.3S299.4 77.2 279.2 92.8c-7.8 6-11.5 15.4-12.9 25.2L242.1 282.3c-5.5 37.3-.4 75.8 19.6 107.7zM404.5 235.3c-7.7-5.5-16.8-9.3-26.8-10.8s-19.8-.6-28.7 2.4c-5.1 1.7-10.9-1.3-10.3-6.7c.1-.5 .1-1.1 .2-1.6c3.2-21.8 23.2-36.8 44.7-33.5s36.3 23.5 33.1 45.3c-.1 .5-.2 1.1-.3 1.6c-1 5.3-7.4 6.4-11.8 3.3zm136.2 15.5c-1 5.3-7.4 6.4-11.8 3.3c-7.7-5.5-16.8-9.3-26.8-10.8s-19.8-.6-28.7 2.4c-5.1 1.7-10.9-1.3-10.3-6.7c.1-.5 .1-1.1 .2-1.6c3.2-21.8 23.2-36.8 44.7-33.5s36.3 23.5 33.1 45.3c-.1 .5-.2 1.1-.3 1.6zM530 350.2c-19.6 44.7-66.8 72.5-116.8 64.9s-87.1-48.2-93-96.7c-1-8.3 8.9-12.1 15.2-6.7c23.9 20.8 53.6 35.3 87 40.3s66.1 .1 94.9-12.8c7.6-3.4 16 3.2 12.6 10.9z"
+                  fill="#CC8414" opacity="0.75"/>
+          </svg>
+
+          <div class="text-center mt-4">
+            <p class="hindi text-ochre/55 text-sm tracking-widest">नाटक &nbsp;•&nbsp; संस्कृति &nbsp;•&nbsp; परिवर्तन</p>
+            <p class="font-ui text-[10px] text-parchment/25 tracking-widest uppercase mt-1">Theatre · Culture · Change</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Soft fade into Bastar section -->
+  <div class="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
+       style="background:linear-gradient(to bottom, transparent, #182808);"></div>
+</section>
+
+
+<!-- ══════════════════════════ BASTAR HERITAGE ══════════════════════════ -->
+<section id="bastar" class="relative py-24 px-6 overflow-hidden tex-dots-green"
+         style="background-color:#182808;">
+
+  <!-- Large ghosted background word -->
+  <div class="absolute right-0 top-0 font-heading select-none pointer-events-none hidden lg:block"
+       style="font-size:18rem;line-height:1;color:rgba(38,60,20,0.55);transform:translateX(22%);user-select:none;">
+    बस्तर
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+
+    <div class="flex items-center gap-2 mb-4">
+      <div class="w-6 h-px bg-moss"></div>
+      <span class="font-ui text-[10px] tracking-[0.35em] uppercase text-moss">02 — The Land</span>
+    </div>
+
+    <h2 class="font-heading text-cream mb-14 reveal" style="font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.08;">
+      THE SOUL OF <span class="text-ochre">BASTAR</span>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Card: Gond Art -->
+      <div class="reveal overflow-hidden rounded-md" style="background:rgba(12,22,6,0.85);border:1px solid rgba(60,88,32,0.4);">
+        <div class="p-7">
+          <div class="font-ui text-[9px] tracking-[0.3em] uppercase text-moss/60 mb-4">— 01</div>
+          <h3 class="font-heading text-cream mb-4" style="font-size:2rem;line-height:1.05;">GOND ART</h3>
+          <!-- Drop your Gond art SVG below, or leave blank for text-only -->
+          <!-- <img src="gond-icon.svg" alt="" aria-hidden="true" class="w-10 h-10 mb-4 opacity-70"> -->
+          <p class="font-body text-cream/55 leading-relaxed text-sm">
+            The Gond community of Bastar practices one of India's most vibrant visual traditions, 
+            intricate dots and lines narrating nature, mythology, and everyday life in vivid ochre and earthy hues.
+          </p>
+        </div>
+        <div style="height:3px;background:linear-gradient(90deg,#3C5820 0%,#CC8414 60%,transparent 100%);"></div>
+      </div>
+
+      <!-- Card: Bastar Dussehra -->
+      <div class="reveal reveal-delay-1 overflow-hidden rounded-md" style="background:rgba(12,22,6,0.85);border:1px solid rgba(60,88,32,0.4);">
+        <div class="p-7">
+          <div class="font-ui text-[9px] tracking-[0.3em] uppercase text-moss/60 mb-4">— 02</div>
+          <h3 class="font-heading text-cream mb-4" style="font-size:2rem;line-height:1.05;">BASTAR DUSSEHRA</h3>
+          <!-- Drop your Dussehra SVG below -->
+          <!-- <img src="dussehra-icon.svg" alt="" aria-hidden="true" class="w-10 h-10 mb-4 opacity-70"> -->
+          <p class="font-body text-cream/55 leading-relaxed text-sm">
+            The world's longest festival. 75 days of ritual, performance, and community gathering.
+            A living tradition shaping Bastar's cultural identity for centuries, unlike any Dussehra elsewhere.
+          </p>
+        </div>
+        <div style="height:3px;background:linear-gradient(90deg,#3C5820 0%,#CC8414 60%,transparent 100%);"></div>
+      </div>
+
+      <!-- Card: Tribal Theatre -->
+      <div class="reveal reveal-delay-2 overflow-hidden rounded-md" style="background:rgba(12,22,6,0.85);border:1px solid rgba(60,88,32,0.4);">
+        <div class="p-7">
+          <div class="font-ui text-[9px] tracking-[0.3em] uppercase text-moss/60 mb-4">— 03</div>
+          <h3 class="font-heading text-cream mb-4" style="font-size:2rem;line-height:1.05;">TRIBAL THEATRE</h3>
+          <!-- Drop your tribal theatre SVG below -->
+          <!-- <img src="tribal-icon.svg" alt="" aria-hidden="true" class="w-10 h-10 mb-4 opacity-70"> -->
+          <p class="font-body text-cream/55 leading-relaxed text-sm">
+            From Panthi dance to Karma performances. Bastar's tribal communities have always used
+            performance to communicate with the divine, preserve oral history, and bind communities together.
+          </p>
+        </div>
+        <div style="height:3px;background:linear-gradient(90deg,#3C5820 0%,#CC8414 60%,transparent 100%);"></div>
+      </div>
+    </div>
+
+    <!-- Pull quote -->
+    <div class="mt-16 reveal">
+      <div class="deco-line mb-8"></div>
+      <blockquote class="max-w-2xl mx-auto text-center">
+        <p class="hindi text-cream/80 leading-snug mb-4" style="font-size:clamp(1.2rem,2.4vw,1.6rem);">
+          "बस्तर की धरती पर, हर पत्थर एक कहानी है, हर पेड़ एक गवाह।"
+        </p>
+        <p class="font-body italic text-cream/40 text-sm">
+          "In the land of Bastar, every stone holds a story; every tree stands as witness."
+        </p>
+      </blockquote>
+      <div class="deco-line mt-8"></div>
+    </div>
+  </div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        style="background:linear-gradient(to bottom, transparent, #140C04);"></div>
+
+</section>
+
+
+<!-- ══════════════════════════ WORKSHOP PILLARS ══════════════════════════ -->
+<section id="workshop" class="relative py-24 px-6 tex-dots" style="background-color:#140C04;">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="flex items-center gap-2 mb-4">
+      <div class="w-6 h-px bg-fire/60"></div>
+      <span class="font-ui text-[10px] tracking-[0.35em] uppercase text-fire/70">03 — The Journey</span>
+    </div>
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+      <h2 class="font-heading text-parchment reveal" style="font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.08;">
+        SEVEN STAGES<br><span class="text-fire">OF BECOMING</span>
+      </h2>
+      <p class="font-body text-parchment/45 text-sm max-w-xs leading-relaxed reveal reveal-delay-1">
+        Each day builds on the last. From body to voice, from self to community. From story to the open street.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div class="workshop-card reveal border border-ochre/14 p-6" style="background:rgba(204,132,20,0.04);">
+        <div class="font-heading text-fire/25 leading-none mb-4" style="font-size:4.5rem;">01</div>
+        <h3 class="font-heading text-parchment text-2xl mb-3">THE BODY<br>AS STAGE</h3>
+        <p class="font-body text-parchment/55 text-sm leading-relaxed">
+          Physical awareness, spatial exploration, and the performer's relationship with their own body. Exercises rooted in folk movement traditions of central India.
+        </p>
+      </div>
+
+      <div class="workshop-card reveal reveal-delay-1 border border-ochre/14 p-6" style="background:rgba(204,132,20,0.04);">
+        <div class="font-heading text-fire/25 leading-none mb-4" style="font-size:4.5rem;">02</div>
+        <h3 class="font-heading text-parchment text-2xl mb-3">VOICE &<br>STORYTELLING</h3>
+        <p class="font-body text-parchment/55 text-sm leading-relaxed">
+          Projecting outdoors, using dialect and local language, oral tradition techniques, and the power of the spoken word in public, unpredictable spaces.
+        </p>
+      </div>
+
+      <div class="workshop-card reveal reveal-delay-2 border border-ochre/14 p-6" style="background:rgba(204,132,20,0.04);">
+        <div class="font-heading text-fire/25 leading-none mb-4" style="font-size:4.5rem;">03</div>
+        <h3 class="font-heading text-parchment text-2xl mb-3">MASK &<br>CHARACTER</h3>
+        <p class="font-body text-parchment/55 text-sm leading-relaxed">
+          Traditional mask-making using local materials; character creation inspired by Bastar's folk tales and the vivid social realities of contemporary life.
+        </p>
+      </div>
+
+      <div class="workshop-card reveal border border-ochre/14 p-6" style="background:rgba(204,132,20,0.04);">
+        <div class="font-heading text-fire/25 leading-none mb-4" style="font-size:4.5rem;">04</div>
+        <h3 class="font-heading text-parchment text-2xl mb-3">SOCIAL ISSUES<br>THEATRE</h3>
+        <p class="font-body text-parchment/55 text-sm leading-relaxed">
+          Theatre as activism. Forum Theatre and Playback Theatre methodologies to address real issues, making the audience the co-creator of solutions.
+        </p>
+      </div>
+
+      <div class="workshop-card reveal reveal-delay-1 border border-ochre/14 p-6" style="background:rgba(204,132,20,0.04);">
+        <div class="font-heading text-fire/25 leading-none mb-4" style="font-size:4.5rem;">05</div>
+        <h3 class="font-heading text-parchment text-2xl mb-3">SCRIPT &<br>DEVISING</h3>
+        <p class="font-body text-parchment/55 text-sm leading-relaxed">
+          Collaborative creation. Developing original street theatre pieces rooted in Bastar's stories through structured devising and free improvisation.
+        </p>
+      </div>
+
+      <!-- Final day — highlighted -->
+      <div class="workshop-card reveal reveal-delay-2 relative overflow-hidden border p-6 rounded-md"
+           style="background:rgba(224,82,18,0.07);border-color:rgba(224,82,18,0.28);">
+        <div class="absolute top-0 right-0 w-24 h-24 pointer-events-none"
+             style="background:radial-gradient(circle at top right, rgba(224,82,18,0.18), transparent)">
+        </div>
+        <div class="font-heading text-fire/25 leading-none mb-4" style="font-size:4.5rem;">07</div>
+        <h3 class="font-heading text-parchment text-2xl mb-3">PUBLIC<br>PERFORMANCE</h3>
+        <p class="font-body text-parchment/55 text-sm leading-relaxed">
+          Final day: take the streets of Jagdalpur. Real audience. Real space. The workshop breathes and performs. This is where everything converges.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Soft fade into Organizers section -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+       style="background:linear-gradient(to bottom, transparent, #100806);"></div>
+</section>
+
+
+
+
+<!-- ═══════════════════════════ ORGANIZERS ═══════════════════════════ -->
+<section class="relative py-24 px-6" style="background-color:#100806;">
+  <div class="deco-line"></div>
+  <div class="max-w-7xl mx-auto py-16">
+
+    <div class="text-center mb-16">
+      <div class="font-ui text-[10px] tracking-[0.35em] uppercase text-fire/70 mb-4">04 — The Organizers</div>
+      <h2 class="font-heading text-parchment reveal" style="font-size:clamp(2rem,4vw,3.2rem);">
+        BROUGHT TOGETHER BY
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-7">
+
+      <!-- BADAL -->
+      <div class="org-card reveal overflow-hidden rounded-md border border-ochre/12" style="background:rgba(204,132,20,0.03);">
+        <!-- Replace the block below with <img src="badal-logo.png"> once you have the logo -->
+        <div class="flex items-center justify-center py-8 px-6"
+             style="background:radial-gradient(ellipse at 50% 100%,rgba(224,82,18,0.08),transparent 70%);">
+          <div class="font-heading leading-none text-center select-none"
+               style="font-size:5.5rem;color:rgba(224,82,18,0.18);letter-spacing:-0.03em;">B</div>
+        </div>
+        <div class="px-8 pb-8 text-center">
+          <div class="font-heading text-fire mb-1" style="font-size:3.2rem;line-height:1;">BADAL</div>
+          <div class="hindi text-ochre/60 text-sm mb-5">बादल</div>
+          <div class="deco-line mb-6"></div>
+          <p class="font-body text-parchment/55 text-sm leading-relaxed">
+            A grassroots cultural organisation rooted in Bastar, working at the intersection of art,
+            activism, and community development. Channelling creative expression for social change.
+          </p>
+          <div class="mt-6 font-ui text-[10px] tracking-widest uppercase text-fire/35">Cultural Partner</div>
+        </div>
+      </div>
+
+      <!-- VYC -->
+      <div class="org-card reveal reveal-delay-1 overflow-hidden rounded-md border border-ochre/12" style="background:rgba(204,132,20,0.03);">
+        <div class="flex items-center justify-center py-8 px-6"
+             style="background:radial-gradient(ellipse at 50% 100%,rgba(224,82,18,0.08),transparent 70%);">
+          <div class="font-heading leading-none text-center select-none"
+               style="font-size:5.5rem;color:rgba(224,82,18,0.18);letter-spacing:-0.03em;">V</div>
+        </div>
+        <div class="px-8 pb-8 text-center">
+          <div class="font-heading text-fire mb-1" style="font-size:3.2rem;line-height:1;">VYC</div>
+          <div class="hindi text-ochre/60 text-sm mb-5">वाईसी</div>
+          <div class="deco-line mb-6"></div>
+          <p class="font-body text-parchment/55 text-sm leading-relaxed">
+            A youth-centred cultural organisation that builds platforms for young people to express,
+            perform, and lead meaningful cultural initiatives across the region.
+          </p>
+          <div class="mt-6 font-ui text-[10px] tracking-widest uppercase text-fire/35">Youth Partner</div>
+        </div>
+      </div>
+
+      <!-- NSD -->
+      <div class="org-card reveal reveal-delay-2 overflow-hidden rounded-md border border-ochre/12" style="background:rgba(204,132,20,0.03);">
+        <div class="flex items-center justify-center py-8 px-6"
+             style="background:radial-gradient(ellipse at 50% 100%,rgba(224,82,18,0.08),transparent 70%);">
+          <div class="font-heading leading-none text-center select-none"
+               style="font-size:3.8rem;color:rgba(224,82,18,0.18);letter-spacing:-0.03em;">NSD</div>
+        </div>
+        <div class="px-8 pb-8 text-center">
+          <div class="font-heading text-fire mb-1" style="font-size:3.2rem;line-height:1;">NSD</div>
+          <div class="hindi text-ochre/60 text-sm mb-5">एनएसडी</div>
+          <div class="deco-line mb-6"></div>
+          <p class="font-body text-parchment/55 text-sm leading-relaxed">
+            The National School of Drama. India's premier theatre institution. Founded in 1959 in
+            New Delhi, NSD has trained India's finest theatre practitioners for over six decades.
+          </p>
+          <div class="mt-6 font-ui text-[10px] tracking-widest uppercase text-fire/35">Academic Partner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="deco-line"></div>
+
+  <!-- Soft fade into Register section -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+       style="background:linear-gradient(to bottom, transparent, #2C1208);"></div>
+</section>
+
+
+
+<!-- ════════════════════════════ REGISTER ════════════════════════════ -->
+<section id="register" class="relative py-24 px-6 overflow-hidden"
+         style="background:linear-gradient(140deg,#2C1208 0%,#140C04 50%,#1A1806 100%);">
+
+  <!-- Central radial glow -->
+  <div class="absolute inset-0 pointer-events-none"
+       style="background:radial-gradient(ellipse at 50% 40%, rgba(224,82,18,0.12) 0%, transparent 60%);">
+  </div>
+
+  <div class="relative z-10 max-w-3xl mx-auto">
+
+    <!-- Header — centred -->
+    <div class="text-center mb-12">
+      <div class="flex items-center justify-center gap-4 mb-8">
+        <div class="h-px flex-1 max-w-14" style="background:linear-gradient(90deg,transparent,rgba(224,82,18,0.55));"></div>
+        <svg width="28" height="36" viewBox="0 0 28 36" fill="none" aria-hidden="true">
+          <path d="M14 2C14 2 21 9 21 16C21 21.5 18 26 14 26C10 26 7 21.5 7 16C7 9 14 2 14 2Z" fill="#E05212"/>
+          <path d="M14 11C14 11 17 15 17 18C17 20 15.7 21.5 14 21.5C12.3 21.5 11 20 11 18C11 15 14 11 14 11Z" fill="#CC8414"/>
+          <rect x="12.5" y="26" width="3" height="9" rx="1.5" fill="#CC8414" opacity="0.45"/>
+        </svg>
+        <div class="h-px flex-1 max-w-14" style="background:linear-gradient(90deg,rgba(224,82,18,0.55),transparent);"></div>
+      </div>
+      <h2 class="hindi text-parchment mb-3 reveal" style="font-size:clamp(2.4rem,7vw,4.5rem);">
+        आइए मंच पर
+      </h2>
+      <h3 class="font-heading text-fire tracking-widest mb-5 reveal" style="font-size:clamp(1.3rem,3vw,2.2rem);">
+        TAKE THE STAGE
+      </h3>
+      <p class="font-body text-parchment/50 leading-relaxed reveal text-sm max-w-xl mx-auto">
+        Applications are open. Shortlisted participants will be contacted with full details on
+        logistics, schedule, and accommodation support.
+      </p>
+    </div>
+
+    <!-- Key details strip -->
+    <div class="grid grid-cols-3 gap-4 mb-10 reveal">
+      <div class="text-center p-4 border border-parchment/10 rounded-md" style="background:rgba(255,255,255,0.02);">
+        <div class="font-heading text-fire leading-none mb-1" style="font-size:1.5rem;">20 APR</div>
+        <div class="font-ui text-[9px] tracking-widest uppercase text-parchment/35">Start Date</div>
+      </div>
+      <div class="text-center p-4 border border-parchment/10 rounded-md" style="background:rgba(255,255,255,0.02);">
+        <div class="font-heading text-fire leading-none mb-1" style="font-size:1.5rem;">1–4 PM</div>
+        <div class="font-ui text-[9px] tracking-widest uppercase text-parchment/35">Daily Timing</div>
+      </div>
+      <div class="text-center p-4 border border-parchment/10 rounded-md" style="background:rgba(255,255,255,0.02);">
+        <div class="font-heading text-fire leading-none mb-1" style="font-size:1.5rem;">FREE</div>
+        <div class="font-ui text-[9px] tracking-widest uppercase text-parchment/35">No Cost</div>
+      </div>
+    </div>
+
+    <form id="registerForm" class="reveal space-y-5">
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <!-- Name -->
+        <div>
+          <label class="block font-ui text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+            Full Name <span class="text-fire">*</span>
+          </label>
+          <input type="text" name="full_name" required autocomplete="name"
+                 class="w-full rounded-md px-4 py-3 font-body text-sm text-parchment/80 transition-colors"
+                 style="background:rgba(255,255,255,0.04);border:1px solid rgba(238,216,168,0.12);"
+                 placeholder="Your full name">
+        </div>
+        <!-- WhatsApp -->
+        <div>
+          <label class="block font-ui text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+            WhatsApp / Phone <span class="text-fire">*</span>
+          </label>
+          <input type="tel" name="phone" required autocomplete="tel"
+                 class="w-full rounded-md px-4 py-3 font-body text-sm text-parchment/80 transition-colors"
+                 style="background:rgba(255,255,255,0.04);border:1px solid rgba(238,216,168,0.12);"
+                 placeholder="+91 00000 00000">
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <!-- Email -->
+        <div>
+          <label class="block font-ui text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+            Email
+          </label>
+          <input type="email" name="email" autocomplete="email"
+                 class="w-full rounded-md px-4 py-3 font-body text-sm text-parchment/80 transition-colors"
+                 style="background:rgba(255,255,255,0.04);border:1px solid rgba(238,216,168,0.12);"
+                 placeholder="you@example.com">
+        </div>
+        <!-- City -->
+        <div>
+          <label class="block font-ui text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+            City / Town <span class="text-fire">*</span>
+          </label>
+          <input type="text" name="city" required
+                 class="w-full rounded-md px-4 py-3 font-body text-sm text-parchment/80 transition-colors"
+                 style="background:rgba(255,255,255,0.04);border:1px solid rgba(238,216,168,0.12);"
+                 placeholder="e.g. Jagdalpur, Raipur…">
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <!-- Age -->
+        <div>
+          <label class="block font-ui text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+            Age <span class="text-fire">*</span>
+          </label>
+          <input type="number" name="age" required min="14" max="99"
+                 class="w-full rounded-md px-4 py-3 font-body text-sm text-parchment/80 transition-colors"
+                 style="background:rgba(255,255,255,0.04);border:1px solid rgba(238,216,168,0.12);"
+                 placeholder="e.g. 22">
+        </div>
+        <!-- Background -->
+        <div>
+          <label class="block font-ui text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+            Background <span class="text-fire">*</span>
+          </label>
+          <select name="background" required
+                  class="w-full rounded-md px-4 py-3 font-body text-sm text-parchment/80 transition-colors appearance-none"
+                  style="background:rgba(255,255,255,0.04);border:1px solid rgba(238,216,168,0.12);">
+            <option value="" disabled selected style="background:#1C0E06;">Select one…</option>
+            <option value="Student" style="background:#1C0E06;">Student</option>
+            <option value="Theatre Practitioner" style="background:#1C0E06;">Theatre Practitioner</option>
+            <option value="Artist / Performer" style="background:#1C0E06;">Artist / Performer</option>
+            <option value="Working Professional" style="background:#1C0E06;">Working Professional</option>
+            <option value="Other" style="background:#1C0E06;">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Why -->
+      <div>
+        <label class="block font-ui text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+          Why do you want to participate? <span class="text-fire">*</span>
+        </label>
+        <textarea name="reason" required rows="4"
+                  class="w-full rounded-md px-4 py-3 font-body text-sm text-parchment/80 transition-colors resize-none"
+                  style="background:rgba(255,255,255,0.04);border:1px solid rgba(238,216,168,0.12);"
+                  placeholder="A few lines about yourself and what draws you to street theatre…"></textarea>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" id="submitBtn"
+              class="flex items-center justify-center gap-3 w-full bg-fire text-cream font-ui text-[11px] tracking-widest uppercase py-5 rounded-md hover:bg-ember transition-colors ">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <circle cx="7.5" cy="4.5" r="2.6" fill="white"/>
+          <path d="M1 13C1 10.239 3.91 8 7.5 8C11.09 8 14 10.239 14 13"
+                stroke="white" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span id="submitLabel">Submit Application</span>
+      </button>
+
+      <!-- Success / error message -->
+      <div id="formMsg" class="hidden text-center py-3 rounded-md font-ui text-[10px] tracking-widest uppercase"></div>
+
+      <p class="font-body text-parchment/25 text-xs text-center leading-relaxed pt-1">
+        For queries, reach out through BADAL or VYC directly.
+      </p>
+    </form>
+
+  </div>
+
+  <!-- Soft fade into Footer -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+       style="background:linear-gradient(to bottom, transparent, #0C0604);"></div>
+</section>
+
+
+<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+<footer class="relative py-12 px-6 border-t border-ochre/10" style="background-color:#0C0604;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-10 mb-10">
+
+      <div>
+        <div class="hindi text-fire text-xl mb-1">पथ नाट्य कार्यशाला</div>
+        <div class="font-ui text-[10px] tracking-widest uppercase text-parchment/35 mb-4">Street Theatre Workshop</div>
+        <p class="font-body text-parchment/40 text-xs leading-relaxed">
+          A platform for youth to discover the power of performance. Rooted in Bastar's culture,
+          alive with the urgency of the present.
+        </p>
+      </div>
+
+      <div>
+        <div class="font-ui text-[10px] tracking-widest uppercase text-parchment/40 mb-4">Navigate</div>
+        <div class="space-y-2">
+          <a href="#about"    class="block font-body text-parchment/40 text-xs hover:text-ochre transition-colors">About the Workshop</a>
+          <a href="#bastar"   class="block font-body text-parchment/40 text-xs hover:text-ochre transition-colors">Bastar's Heritage</a>
+          <a href="#workshop" class="block font-body text-parchment/40 text-xs hover:text-ochre transition-colors">Workshop Details</a>
+          <a href="#register" class="block font-body text-parchment/40 text-xs hover:text-ochre transition-colors">Register</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="font-ui text-[10px] tracking-widest uppercase text-parchment/40 mb-4">Organized By</div>
+        <div class="space-y-2.5">
+          <div class="font-heading text-parchment/60 text-xl leading-none">BADAL</div>
+          <div class="font-heading text-parchment/60 text-xl leading-none">VYC</div>
+          <div class="font-heading text-parchment/60 text-xl leading-none">NSD</div>
+        </div>
+        <div class="mt-5 font-body text-parchment/25 text-xs">Jagdalpur, Bastar, Chhattisgarh</div>
+      </div>
+    </div>
+
+    <div class="deco-line mb-6"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="font-ui text-[10px] text-parchment/25 tracking-widest uppercase">
+        Path Natya Karyashala &nbsp;·&nbsp; Bastar &nbsp;·&nbsp; 2026
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="font-body italic text-parchment/18 text-xs">नाटक एक संस्कार है</span>
+        <span class="text-parchment/15 text-xs">·</span>
+        <span class="font-body italic text-parchment/18 text-xs">Theatre is a rite of passage</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════ JS ════════════════════════════════ -->
+<script>
+  // ── Hero menu button ──
+  const heroMenuBtn   = document.getElementById('heroMenuBtn');
+  const heroMobileNav = document.getElementById('heroMobileNav');
+  if (heroMenuBtn && heroMobileNav) {
+    heroMenuBtn.addEventListener('click', () => heroMobileNav.classList.toggle('hidden'));
+    heroMobileNav.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => heroMobileNav.classList.add('hidden'))
+    );
+  }
+
+  // ── Registration form → Frappe API ──
+  const registerForm = document.getElementById('registerForm');
+  if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn   = document.getElementById('submitBtn');
+      const label = document.getElementById('submitLabel');
+      const msg   = document.getElementById('formMsg');
+
+      btn.disabled = true;
+      label.textContent = 'Sending…';
+      msg.className = 'hidden';
+
+      const payload = {
+        full_name:  registerForm.elements['full_name'].value.trim(),
+        phone:      registerForm.elements['phone'].value.trim(),
+        email:      registerForm.elements['email'].value.trim(),
+        city:       registerForm.elements['city'].value.trim(),
+        age:        registerForm.elements['age'].value.trim(),
+        background: registerForm.elements['background'].value,
+        reason:     registerForm.elements['reason'].value.trim(),
+      };
+
+      try {
+        const res  = await fetch('https://erp.opentally.in/api/method/nsd_registration', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (res.ok && data.message === '200') {
+          msg.textContent = '✓ Application received — we will be in touch!';
+          msg.className = 'text-center py-3 rounded-md font-ui text-[10px] tracking-widest uppercase';
+          msg.style.cssText = 'color:#4ade80;background:rgba(74,222,128,0.07);border:1px solid rgba(74,222,128,0.2);';
+          registerForm.reset();
+          confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#E05212','#CC8414','#EED8A8','#FAF0D4'] });
+          setTimeout(() => confetti({ particleCount: 60, angle: 60,  spread: 55, origin: { x: 0, y: 0.65 }, colors: ['#E05212','#CC8414','#EED8A8'] }), 300);
+          setTimeout(() => confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1, y: 0.65 }, colors: ['#E05212','#CC8414','#EED8A8'] }), 300);
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch (err) {
+        msg.textContent = '✗ Something went wrong — please try again.';
+        msg.className = 'text-center py-3 rounded-md font-ui text-[10px] tracking-widest uppercase';
+        msg.style.cssText = 'color:#f87171;background:rgba(248,113,113,0.07);border:1px solid rgba(248,113,113,0.2);';
+      } finally {
+        btn.disabled = false;
+        label.textContent = 'Submit Application';
+        msg.classList.remove('hidden');
+      }
+    });
+  }
+
+  // ── Scroll reveal ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const revObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revObs.observe(el));
+
+</script>
+
+</body>
+</html>

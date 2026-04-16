@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brush Test — Fixed</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #C4A050;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+      padding: 40px 20px;
+      font-family: sans-serif;
+    }
+    h2 { color:#1A0804; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:8px; text-align:center; }
+    .frame { position:relative; width:100%; max-width:400px; overflow:hidden; }
+    .photo { display:block; width:100%; height:360px; object-fit:cover; object-position:center 20%; }
+  </style>
+</head>
+<body>
+
+  <!-- ATTEMPT 1: small height, only the rough edge shows -->
+  <div>
+    <h2>Top 22% + Bottom 20% — just the rough edge</h2>
+    <div class="frame">
+      <img class="photo" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Bison_Horn_Maria_Tribal_Dance_Bastar.jpg" alt="">
+      <img src="brush_stroke.png" alt="" style="
+        position:absolute; top:-3%; left:-3%; width:106%; height:22%;
+        object-fit:cover; object-position:top center;
+        mix-blend-mode:multiply; pointer-events:none;">
+      <img src="brush_stroke.png" alt="" style="
+        position:absolute; bottom:-3%; left:-3%; width:106%; height:20%;
+        object-fit:cover; object-position:bottom center;
+        transform:rotate(180deg);
+        mix-blend-mode:multiply; pointer-events:none;">
+    </div>
+  </div>
+
+  <!-- ATTEMPT 2: medium — slightly more coverage -->
+  <div>
+    <h2>Top 28% + Bottom 24%</h2>
+    <div class="frame">
+      <img class="photo" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Bison_Horn_Maria_Tribal_Dance_Bastar.jpg" alt="">
+      <img src="brush_stroke.png" alt="" style="
+        position:absolute; top:-4%; left:-3%; width:106%; height:28%;
+        object-fit:cover; object-position:top center;
+        mix-blend-mode:multiply; pointer-events:none;">
+      <img src="brush_stroke.png" alt="" style="
+        position:absolute; bottom:-4%; left:-3%; width:106%; height:24%;
+        object-fit:cover; object-position:bottom center;
+        transform:rotate(180deg);
+        mix-blend-mode:multiply; pointer-events:none;">
+    </div>
+  </div>
+
+  <!-- ATTEMPT 3: the golden overlay mask for side edges + small multiply strokes -->
+  <div>
+    <h2>Mask (rough sides) + small multiply strokes</h2>
+    <div class="frame" style="background:#C4A050;">
+      <!-- photo with rough side edges via golden overlay mask -->
+      <img class="photo" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Bison_Horn_Maria_Tribal_Dance_Bastar.jpg" alt="">
+      <!-- golden overlay masked by brush stroke → rough organic frame edges -->
+      <div style="position:absolute;inset:-5%;background:#C4A050;pointer-events:none;
+                  -webkit-mask-image:url('brush_stroke.png');
+                  mask-image:url('brush_stroke.png');
+                  -webkit-mask-size:100% 100%; mask-size:100% 100%;
+                  -webkit-mask-position:center; mask-position:center;
+                  -webkit-mask-mode:luminance; mask-mode:luminance;
+                  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;">
+      </div>
+      <!-- small top multiply stroke on top of that -->
+      <img src="brush_stroke.png" alt="" style="
+        position:absolute; top:-4%; left:-3%; width:106%; height:26%;
+        object-fit:cover; object-position:top center;
+        mix-blend-mode:multiply; pointer-events:none;">
+      <!-- small bottom multiply stroke -->
+      <img src="brush_stroke.png" alt="" style="
+        position:absolute; bottom:-4%; left:-3%; width:106%; height:22%;
+        object-fit:cover; object-position:bottom center;
+        transform:rotate(180deg);
+        mix-blend-mode:multiply; pointer-events:none;">
+    </div>
+  </div>
+
+  <!-- LIVE TUNER: drag to find the right height -->
+  <div style="width:100%;max-width:400px;">
+    <h2 style="margin-bottom:16px;">Live tuner — drag sliders</h2>
+    <div class="frame" id="tunerFrame">
+      <img class="photo" id="tunerPhoto"
+           src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Bison_Horn_Maria_Tribal_Dance_Bastar.jpg" alt="">
+      <img src="brush_stroke.png" id="topBrush" alt="" style="
+        position:absolute; top:-4%; left:-3%; width:106%;
+        object-fit:cover; object-position:top center;
+        mix-blend-mode:multiply; pointer-events:none;">
+      <img src="brush_stroke.png" id="botBrush" alt="" style="
+        position:absolute; left:-3%; width:106%;
+        object-fit:cover; object-position:bottom center;
+        transform:rotate(180deg);
+        mix-blend-mode:multiply; pointer-events:none;">
+    </div>
+
+    <div style="margin-top:20px; display:flex; flex-direction:column; gap:14px;">
+      <label style="font-size:0.7rem;color:#1A0804;display:flex;align-items:center;gap:10px;">
+        Top height:
+        <input type="range" id="th" min="5" max="60" value="26" style="flex:1;">
+        <span id="thv" style="width:36px;font-size:0.7rem;color:#1A0804;">26%</span>
+      </label>
+      <label style="font-size:0.7rem;color:#1A0804;display:flex;align-items:center;gap:10px;">
+        Bottom height:
+        <input type="range" id="bh" min="5" max="60" value="22" style="flex:1;">
+        <span id="bhv" style="width:36px;font-size:0.7rem;color:#1A0804;">22%</span>
+      </label>
+      <label style="font-size:0.7rem;color:#1A0804;display:flex;align-items:center;gap:10px;">
+        Top offset:
+        <input type="range" id="to" min="-15" max="5" value="-4" style="flex:1;">
+        <span id="tov" style="width:36px;font-size:0.7rem;color:#1A0804;">-4%</span>
+      </label>
+      <label style="font-size:0.7rem;color:#1A0804;display:flex;align-items:center;gap:10px;">
+        Bottom offset:
+        <input type="range" id="bo" min="-15" max="5" value="-4" style="flex:1;">
+        <span id="bov" style="width:36px;font-size:0.7rem;color:#1A0804;">-4%</span>
+      </label>
+      <button id="logBtn" style="background:#1A0804;color:#C4A050;border:none;padding:8px 16px;
+              font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;border-radius:3px;margin-top:4px;">
+        Log values →
+      </button>
+      <pre id="out" style="font-size:0.62rem;color:#1A0804;background:rgba(26,8,4,0.08);
+           padding:10px;border-radius:4px;display:none;white-space:pre-wrap;"></pre>
+    </div>
+  </div>
+
+  <script>
+    const topB = document.getElementById('topBrush');
+    const botB = document.getElementById('botBrush');
+    const th = document.getElementById('th');
+    const bh = document.getElementById('bh');
+    const to = document.getElementById('to');
+    const bo = document.getElementById('bo');
+
+    function update() {
+      topB.style.height = th.value + '%';
+      topB.style.top    = to.value + '%';
+      botB.style.height = bh.value + '%';
+      botB.style.bottom = bo.value + '%';
+      document.getElementById('thv').textContent = th.value + '%';
+      document.getElementById('bhv').textContent = bh.value + '%';
+      document.getElementById('tov').textContent = to.value + '%';
+      document.getElementById('bov').textContent = bo.value + '%';
+    }
+
+    [th, bh, to, bo].forEach(el => el.addEventListener('input', update));
+    update();
+
+    document.getElementById('logBtn').addEventListener('click', () => {
+      const out = document.getElementById('out');
+      out.style.display = 'block';
+      out.textContent =
+`top stroke:    height ${th.value}%,  top ${to.value}%
+bottom stroke: height ${bh.value}%,  bottom ${bo.value}%`;
+    });
+  </script>
+
+</body>
+</html>

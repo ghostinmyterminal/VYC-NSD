@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Banner with Mask Effect - Sample</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<style>
+.mask1 {
+
+  mask-image: url(brush_stroke.png);
+
+  -webkit-mask-size: cover;
+  mask-size: cover;
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+</style>
+<body class="min-h-screen">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden" style="background: #925920; min-height: 100svh;">
+    <!-- Top Bar -->
+    <div class="relative z-10 flex items-center justify-between px-7 pt-10 pb-4">
+      <div class="w-11"></div>
+      <div class="text-center flex-1">
+        <h1 class="text-4xl md:text-5xl font-bold" style="font-family: serif; color: #EED8A8;">
+          पथ नाट्य
+        </h1>
+        <p class="text-xs tracking-[0.22em] opacity-45" style="font-family: serif;">
+          Street Theatre Workshop
+        </p>
+      </div>
+      <div class="w-11"></div>
+    </div>
+
+    <!-- Hero Image with Mask Effect -->
+    <div class="mx-7">
+      <!-- Image 1: Using brush mask on mobile -->
+      <div class="hero-image-wrapper rounded-2xl">
+        <img
+          src="bison_dance.jpg"
+          alt="Bison Horn Maria tribal dancers, Bastar"
+          class="mask1 w-full"
+  style="aspect-ratio: 16/9; object-fit: cover; object-position: center 28%;"
+        />
+        <!-- Gradient overlay for depth -->
+        <div class="hero-overlay"></div>
+      </div>
+
+      <!-- Image 2: With brush border effect (alternative) -->
+      <div class="mt-6">
+        <p class="text-xs text-center opacity-50 mb-3">Alternative: Brush Border Effect</p>
+        <div class="brush-border rounded-2xl overflow-hidden">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Bison_Horn_Maria_Tribal_Dance_Bastar.jpg"
+            alt="Bison Horn Maria tribal dancers"
+            class="w-full block relative z-0"
+            style="height: clamp(200px, 40vw, 350px); object-fit: cover; object-position: center 28%; "
+          />
+        </div>
+      </div>
+
+      <!-- Image 3: CSS clip-path mask (no external file needed) -->
+      <div class="mt-6">
+        <p class="text-xs text-center opacity-50 mb-3">Alternative: CSS Clip-Path Wave</p>
+        <div class="rounded-2xl overflow-hidden">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Bison_Horn_Maria_Tribal_Dance_Bastar.jpg"
+            alt="Bison Horn Maria tribal dancers"
+            class="w-full block"
+            style="height: clamp(200px, 40vw, 350px); object-fit: cover; object-position: center 28%;"
+          />
+          <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <clipPath id="waveClip">
+                <path d="M0,0 Q25,10 50,0 T100,0 L100,100 L0,100 Z" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Strip -->
+    <div class="mx-7 mt-6 flex items-center justify-between pb-14">
+      <div class="flex items-center gap-4">
+        <div>
+          <div class="text-xl text-[#E05212] font-bold">20 APR</div>
+          <div class="text-[10px] uppercase tracking-widest opacity-35">Start Date</div>
+        </div>
+        <div class="w-px h-7 bg-parchment/10"></div>
+        <div>
+          <div class="text-xl text-[#E05212] font-bold">1–4 PM</div>
+          <div class="text-[10px] uppercase tracking-widest opacity-35">Daily • Free</div>
+        </div>
+      </div>
+      <div class="text-[10px] uppercase tracking-widest opacity-30">
+        BADAL × VYC × NSD
+      </div>
+    </div>
+  </section>
+</body>
+</html>

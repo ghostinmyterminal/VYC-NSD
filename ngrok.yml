@@ -1,0 +1,5 @@
+tunnels:
+  nsd3:
+    proto: http
+    addr: 5500
+    host_header: rewrite
